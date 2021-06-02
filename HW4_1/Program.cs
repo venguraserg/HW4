@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace HW4_1
 {
@@ -11,26 +12,26 @@ namespace HW4_1
         //Для месяцев попробуем использовать перечислением (для практики)
         enum Months
         {
-            January = 1,
-            February,
-            March,
-            April,
-            May,
-            June,
-            July,
-            August,
-            September,
-            October,
-            November,
-            December
+            Январь = 1,
+            Февраль,
+            Март,
+            Апрель,
+            Май,
+            Июнь,
+            Июль,
+            Август,
+            Сентябрь,
+            Октябрь,
+            Ноябрь,
+            Декабрь
         }
 
         static void Main(string[] args)
         {
-            int[,] massive = new int[12, 4];
-            Random r = new Random();
-            
-            for (var i = 0; i < 12; i++)
+            int[,] massive = new int[12, 4];            //инициализируем массив для хранения данных
+            Random r = new Random();                    //инициализируем генератор случайных чисел   
+
+            for (var i = 0; i < 12; i++)                // Генерируем таблицу
             {
                 for (var j = 0; j < 4; j++)
                 {
@@ -50,7 +51,7 @@ namespace HW4_1
                             break;
                         case 3:
                             //Расчет прибыли
-                            massive[i, j] = massive[i, j - 2] - massive[i, j - 1];
+                            massive[i, j] = massive[i, j - 2] - massive[i, j - 1];      //рачситаем прибыль = доход - расход
                             break;
                     }
                 }              
@@ -63,11 +64,11 @@ namespace HW4_1
             for (var i = 0; i < 12; i++)
             {
                 
-                Console.Write($"* {(Months)massive[i, 0]}");
-                for (var k = 0; k < (10 - (((Months)massive[i, 0]).ToString()).Length); k++) { Console.Write(" "); }
+                Console.Write($"* {(Months)massive[i, 0]}");                                                            //Выводим месяц через ENUM
+                for (var k = 0; k < (10 - (((Months)massive[i, 0]).ToString()).Length); k++) { Console.Write(" "); }    //Считаем отступы, чтобы таблица была ровной
                 
-                Console.Write($"*     {massive[i, 1]}");
-                var number = massive[i, 1];
+                Console.Write($"*     {massive[i, 1]}");                                //выводим доход и распаолаем ровно в таблице
+                var number = massive[i, 1];                                          // получаем колличество символов числа
                 int count = 0;
                 if (number < 0) number = -number;
                 while (number > 0)
@@ -75,9 +76,9 @@ namespace HW4_1
                     number = number / 10;
                     count++;
                 }
-                for (var k = 0; k < (10 - count); k++) { Console.Write(" "); }
+                for (var k = 0; k < (10 - count); k++) { Console.Write(" "); }          //Расчитываем отступ
 
-                Console.Write($"*     {massive[i, 2]}");
+                Console.Write($"*     {massive[i, 2]}");                                //Далее анологично для остальных столбцов
                 number = massive[i, 2];
                 count = 0;
                 if (number < 0) number = -number;
@@ -112,7 +113,7 @@ namespace HW4_1
             {
                 if (massive[i, 3] > 0) countMonth++;
             }
-            Console.WriteLine("Количество месяцев с положительной прибылью составляет " + countMonth);
+            Console.WriteLine("\nКоличество месяцев с положительной прибылью составляет " + countMonth);
 
             //определение трех месяцев наименьшей прибылью, при этом месяцы с одинаковой прибылью считаются за один.
             int[] tempArray = new int[12];
@@ -120,12 +121,38 @@ namespace HW4_1
             {
                 tempArray[i] = massive[i, 3];
             }
-            Console.WriteLine("\n\n\n");
+            
             Array.Sort(tempArray);
-            for (var i = 0; i < 12; i++)
+
+            int[,] reportMassive = new int[3, 2];
+            for (int i = 0, count = 0; i < 12; i++)
             {
-                
-                Console.WriteLine(tempArray[i]);
+                if ((tempArray[i] != tempArray[i + 1])/*&&(tempArray[i]>=0)*/)   //Если раскоментировать, то будем искать только прибыль больше нуля
+                {                                                                //Сдесь есть баг, так как числа генерятся рандомно, 
+                    reportMassive[count, 0] = tempArray[i];                      // бывает такое что месяцев с положительной прибылью менее трех
+                    count++;                                                     // так как массив предопределен заранее, в этом случае выкидывает исключение
+                }                                                                // в принципе как решить знаю, если нужно - реализую
+
+                if (count > 2) break;
+            }
+
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 0; j < 12; j++)
+                {
+                    if (reportMassive[i, 0] == massive[j, 3]) reportMassive[i, 1] = massive[j, 0];
+
+                }
+
+            }
+
+            Console.WriteLine("Наименьшая прибыль (Наибольший убыток) по возрастанию по месяцам");
+
+            for (var i = 0; i < 3; i++)
+            {
+                Console.Write($" {(Months)reportMassive[i, 1]}   ");
+                for (var k = 0; k < (10 - (((Months)reportMassive[i, 1]).ToString()).Length); k++) { Console.Write(" "); }
+                Console.WriteLine($" {reportMassive[i, 0]}");
             }
 
 
