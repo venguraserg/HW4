@@ -18,7 +18,7 @@ namespace HW4_2
             for (var i = 0; i < nunberRow; i++)
             {
                 for (var emptyCell = 1; emptyCell <= nunberRow - i; emptyCell++)
-                    Console.Write("  ");
+                   Console.Write($"{"",-3}");
 
 
                 for (var j = 0; j <= i; j++)
@@ -27,8 +27,8 @@ namespace HW4_2
                         c = 1;
                     else
                         c = c * (i - j + 1) / j;
-                    Console.Write(c);
-                    Console.Write(c >= 100 ? (" ") : c >= 10 ? ("  ") : ("   "));
+                    Console.Write($"{c,-6}");
+                    //Console.Write(c >= 100 ? (" ") : c >= 10 ? ("  ") : ("   "));
 
                 }
                 Console.Write("\n");

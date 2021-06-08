@@ -11,18 +11,18 @@ namespace HW4_1
         //Для месяцев попробуем использовать перечислением (для практики)
         enum Months
         {
-            January = 1,
-            February,
-            March,
-            April,
-            May,
-            June,
-            July,
-            August,
-            September,
-            October,
-            November,
-            December
+            Январь = 1,
+            Февраль,
+            Март,
+            Апрель,
+            май,
+            Июнь,
+            Июль,
+            Август,
+            Сентябрь,
+            Октябрь,
+            Ноябрь,
+            Декабрь
         }
 
         static void Main(string[] args)
@@ -42,11 +42,11 @@ namespace HW4_1
                             break;
                         case 1:
                             //Рандомное заполнение дохода
-                            massive[i, j] = r.Next(1_000_000);
+                            massive[i, j] = r.Next(3);
                             break;
                         case 2:
                             //Рандомное заполнение расхода
-                            massive[i, j] = r.Next(1_000_000);
+                            massive[i, j] = r.Next(3);
                             break;
                         case 3:
                             //Расчет прибыли
@@ -57,54 +57,54 @@ namespace HW4_1
             }
             //Так как заказчик крупная компания, то и вывод таблицы должен быть красивым)))
 
-            Console.WriteLine("******************************************************************");
-            Console.WriteLine("* Месяц     *     Доход     *     Расход     *      Прибыль      *");
-            Console.WriteLine("******************************************************************");
+            Console.WriteLine("*********************************************************");
+            Console.WriteLine("* Месяц     * Доход         * Расход     * Прибыль      *");
+            Console.WriteLine("*********************************************************");
             for (var i = 0; i < 12; i++)
             {
                 
-                Console.Write($"* {(Months)massive[i, 0]}");
-                for (var k = 0; k < (10 - (((Months)massive[i, 0]).ToString()).Length); k++) { Console.Write(" "); }
+                Console.Write($"* {(Months)massive[i, 0],-10}");
+                //for (var k = 0; k < (10 - (((Months)massive[i, 0]).ToString()).Length); k++) { Console.Write(" "); }
                 
-                Console.Write($"*     {massive[i, 1]}");
-                var number = massive[i, 1];
-                int count = 0;
-                if (number < 0) number = -number;
-                while (number > 0)
-                {
-                    number = number / 10;
-                    count++;
-                }
-                for (var k = 0; k < (10 - count); k++) { Console.Write(" "); }
+                Console.Write($"* {massive[i, 1],-14}");
+                //var number = massive[i, 1];
+                //int count = 0;
+                //if (number < 0) number = -number;
+                //while (number > 0)
+                //{
+                //    number = number / 10;
+                //    count++;
+                //}
+                //for (var k = 0; k < (10 - count); k++) { Console.Write(" "); }
 
-                Console.Write($"*     {massive[i, 2]}");
-                number = massive[i, 2];
-                count = 0;
-                if (number < 0) number = -number;
-                while (number > 0)
-                {
-                    number = number / 10;
-                    count++;
-                }
-                for (var k = 0; k < (11 - count); k++) { Console.Write(" "); }
+                Console.Write($"* {massive[i, 2],-11}");
+                //number = massive[i, 2];
+                //count = 0;
+                //if (number < 0) number = -number;
+                //while (number > 0)
+                //{
+                //    number = number / 10;
+                //    count++;
+                //}
+                //for (var k = 0; k < (11 - count); k++) { Console.Write(" "); }
 
-                Console.Write($"*      {massive[i, 3]}");
-                number = massive[i, 3];
-                count = 0;
-                if (number < 0) 
-                {
-                    number = -number;
-                    count++;
-                }
-                while (number > 0)
-                {
-                    number = number / 10;
-                    count++;
-                }
-                for (var k = 0; k < (13 - count); k++) { Console.Write(" "); }
+                Console.Write($"* {massive[i, 3],-13}");
+                //number = massive[i, 3];
+                //count = 0;
+                //if (number < 0) 
+                //{
+                //    number = -number;
+                //    count++;
+                //}
+                //while (number > 0)
+                //{
+                //    number = number / 10;
+                //    count++;
+                //}
+                //for (var k = 0; k < (13 - count); k++) { Console.Write(" "); }
                 Console.WriteLine("*");
             }
-            Console.WriteLine("******************************************************************");
+            Console.WriteLine("*********************************************************");
 
             // Определение колдичества месяцев с положительной прибылью
             int countMonth = 0;
