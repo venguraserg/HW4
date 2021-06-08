@@ -17,6 +17,8 @@ namespace HW4_3
             Console.WriteLine("Введите размерность для матрицы");
             Console.WriteLine("Введите количество строк");
             var rowNumberMatrix = Convert.ToInt32(Console.ReadLine());     // ввод количества строк
+
+
             Console.WriteLine("Введите количество столбцов");
             var columnNumberMatrix = Convert.ToInt32(Console.ReadLine());  // ввод количества столбцов
             //Формируем и выводим на экран матрицу случайным образом
