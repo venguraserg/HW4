@@ -165,15 +165,41 @@ namespace HW4_3
             Console.WriteLine("Умножение матриц");
             Console.WriteLine("Введите размерность для матрицы 1");
             Console.WriteLine("Введите количество строк");
-            var rowNumberMatrixA = Convert.ToInt32(Console.ReadLine());     // ввод количества строк
+
+            int rowNumberMatrixA, columnNumberMatrixA;
+
+            do
+            {
+                correctParse = int.TryParse(Console.ReadLine(), out rowNumberMatrixA); // ввод количества строк
+                if (rowNumberMatrixA <= 0) Console.WriteLine("Не коррекные данные, повторите ввод");
+            }
+            while (!correctParse || rowNumberMatrixA <= 0);
+
+            
             Console.WriteLine("Введите количество столбцов");
-            var columnNumberMatrixA = Convert.ToInt32(Console.ReadLine());  // ввод количества столбцов
+
+            do
+            {
+                correctParse = int.TryParse(Console.ReadLine(), out columnNumberMatrixA); // ввод количества столбцов
+                if (columnNumberMatrixA <= 0) Console.WriteLine("Не коррекные данные, повторите ввод");
+            }
+            while (!correctParse || columnNumberMatrixA <= 0);
+
+            
             Console.WriteLine("Определим размерность для матрицы 2");
             Console.WriteLine("Обязательное условие при умножении \nЧсло столбцов матрицы А равно количеству строк матрицы B\n\n");
             var rowNumberMatrixB = columnNumberMatrixA;
+            int columnNumberMatrixB;
             Console.WriteLine($"Количество строк матрицы B= {rowNumberMatrixB}");
             Console.WriteLine("Введите количество столбцов матрицы B");
-            var columnNumberMatrixB = Convert.ToInt32(Console.ReadLine());  // ввод количества столбцов
+
+            do
+            {
+                correctParse = int.TryParse(Console.ReadLine(), out columnNumberMatrixB); // ввод количества столбцов
+                if (columnNumberMatrixB <= 0) Console.WriteLine("Не коррекные данные, повторите ввод");
+            }
+            while (!correctParse || columnNumberMatrixB <= 0);
+
             
             Console.WriteLine("Дабы вас не перетруждать заполним случайным образом");
             int[,] matrix_A = new int[rowNumberMatrixA, columnNumberMatrixA];
@@ -185,8 +211,8 @@ namespace HW4_3
                 for (var j = 0; j < columnNumberMatrixA; j++)
                 {
                     matrix_A[i, j] = randomNumber.Next(100);
-                    Console.Write(matrix_A[i, j] >= 100 ? ("  ") : matrix_A[i, j] >= 10 ? ("   ") : ("    "));
-                    Console.Write($"{matrix_A[i, j]}");
+                    //Console.Write(matrix_A[i, j] >= 100 ? ("  ") : matrix_A[i, j] >= 10 ? ("   ") : ("    "));
+                    Console.Write($"{matrix_A[i, j],5}");
 
                 }
                 Console.WriteLine();
@@ -197,8 +223,8 @@ namespace HW4_3
                 for (var j = 0; j < columnNumberMatrixB; j++)
                 {
                     matrix_B[i, j] = randomNumber.Next(100);
-                    Console.Write(matrix_B[i, j] >= 100 ? ("  ") : matrix_B[i, j] >= 10 ? ("   ") : ("    "));
-                    Console.Write($"{matrix_B[i, j]}");
+                    //Console.Write(matrix_B[i, j] >= 100 ? ("  ") : matrix_B[i, j] >= 10 ? ("   ") : ("    "));
+                    Console.Write($"{matrix_B[i, j],5}");
 
                 }
                 Console.WriteLine();
@@ -235,8 +261,8 @@ namespace HW4_3
             {
                 for (var j = 0; j < columnNumberMatrixB; j++)
                 {
-                    Console.Write(matrix_C[i, j] >= 100 ? ("  ") : matrix_C[i, j] >= 10 ? ("   ") : ("    "));
-                    Console.Write($"{matrix_C[i, j]}");
+                    //Console.Write(matrix_C[i, j] >= 100 ? ("  ") : matrix_C[i, j] >= 10 ? ("   ") : ("    "));
+                    Console.Write($"{matrix_C[i, j],8}");
 
                 }
                 Console.WriteLine();
