@@ -140,7 +140,7 @@ namespace HW4_1
 
             int[,] reportMassive = new int[12, 2];
 
-            for (int i = 0, count =0; i < 3; i++)
+            for (int i = 0, count =0; -i < 3; i++)
             {
                 for (int j = 0; j < 12; j++)
                 {
