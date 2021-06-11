@@ -43,11 +43,11 @@ namespace HW4_1
                             break;
                         case 1:
                             //Рандомное заполнение дохода
-                            massive[i, j] = r.Next(4);
+                            massive[i, j] = /*1;*/r.Next(4);
                             break;
                         case 2:
                             //Рандомное заполнение расхода
-                            massive[i, j] = r.Next(4);
+                            massive[i, j] = /*2;*/r.Next(4);
                             break;
                         case 3:
                             //Расчет прибыли
@@ -126,12 +126,12 @@ namespace HW4_1
 
             int[] worstProfits = new int[3];
 
-            for (int i = 0, count = 0; i < 12; i++)
+            for (int i = 1, count = 0; i < 12; i++)
             {
                 if (count >= worstProfits.Length) break;
-                if (tempArray[i] != tempArray[i + 1])
+                if (tempArray[i] != tempArray[i - 1])
                 {
-                    worstProfits[count] = tempArray[i];
+                    worstProfits[count] = tempArray[i-1];
                     count++;
 
                 }
