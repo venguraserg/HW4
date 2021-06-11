@@ -43,11 +43,11 @@ namespace HW4_1
                             break;
                         case 1:
                             //Рандомное заполнение дохода
-                            massive[i, j] = r.Next(3);
+                            massive[i, j] = r.Next(4);
                             break;
                         case 2:
                             //Рандомное заполнение расхода
-                            massive[i, j] = r.Next(3);
+                            massive[i, j] = r.Next(4);
                             break;
                         case 3:
                             //Расчет прибыли
@@ -128,37 +128,46 @@ namespace HW4_1
 
             for (int i = 0, count = 0; i < 12; i++)
             {
+                if (count >= worstProfits.Length) break;
                 if (tempArray[i] != tempArray[i + 1])
                 {
                     worstProfits[count] = tempArray[i];
                     count++;
 
                 }
-                if (count > 2) break;
+                
             }
 
+            int[,] reportMassive = new int[12,2];
 
-            int[,] reportMassive = new int[12, 2];
-
-            for (int i = 0, count =0; -i < 3; i++)
+            for (int i = 0, count =0; i < 3; i++)
             {
                 for (int j = 0; j < 12; j++)
                 {
-                    if (worstProfits[i] == massive[j, 3])
+                    if (massive[j, 3] == worstProfits[i])
                     {
-                        reportMassive[count, 0] = massive[j, 3];
+                        reportMassive[count, 0] = massive[j, 0];
+                        reportMassive[count,1] = massive[j, 3];
                         count++;
                     }
+                    
                 }
             }
-
-
-
-
-
-
-
+            Console.WriteLine("Наименьшая прибыль (Наибольший убыток) по возрастанию по месяцам\n");
             
+            for (var i = 0; i < 12; i++)
+            {
+                if(reportMassive[i,0]!=0)Console.WriteLine($" {(Months)reportMassive[i, 0],-10}{reportMassive[i, 1],5}");
+            }
+           
+           
+
+
+
+
+
+
+
             //for (int i = 0, count = 0; i < 12; i++)
             //{
             //    if ((tempArray[i] != tempArray[i + 1])/*&&(tempArray[i]>=0)*/)   //Если раскоментировать, то будем искать только прибыль больше нуля
@@ -170,27 +179,31 @@ namespace HW4_1
             //    if (count > 2) break;
             //}
 
-            for (var i = 0; i < 12; i++)
-            {
-                for (var j = 0; j < 12; j++)
-                {
-                    if (reportMassive[i, 0] == massive[j, 3]) reportMassive[i, 1] = massive[j, 0];
+            //for (var i = 0; i < 12; i++)
+            //{
+            //    for (var j = 0; j < 12; j++)
+            //    {
+            //        if (reportMassive[i, 0] == massive[j, 3]) 
+            //        {
+            //            //reportMassive[i, 0] = massive[j, 0];
+            //            reportMassive[i, 1] = massive[j, 0]; 
+            //        }
 
-                }
+            //    }
 
-            }
+            //}
 
-            Console.WriteLine("Наименьшая прибыль (Наибольший убыток) по возрастанию по месяцам");
+            //Console.WriteLine("Наименьшая прибыль (Наибольший убыток) по возрастанию по месяцам");
 
-            for (var i = 0; i < 12; i++)
-            {
-                Console.Write($" {(Months)reportMassive[i, 1]}   ");
-                for (var k = 0; k < (10 - (((Months)reportMassive[i, 1]).ToString()).Length); k++) { Console.Write(" "); }
-                Console.WriteLine($" {reportMassive[i, 0]}");
-            }
+            //for (var i = 0; i < 12; i++)
+            //{
+            //    Console.WriteLine($" {(Months)reportMassive[i, 1],-10}{reportMassive[i, 0],5}");
+            //    //for (var k = 0; k < (10 - (((Months)reportMassive[i, 1]).ToString()).Length); k++) { Console.Write(" "); }
+            //    //Console.WriteLine($" {reportMassive[i, 0]}");
+            //}
 
 
-            Console.WriteLine("Для продолжения нажмите любую клавишу . . . ");
+            Console.WriteLine("\n\nДля продолжения нажмите любую клавишу . . . ");
             Console.ReadKey();
         }
     }
