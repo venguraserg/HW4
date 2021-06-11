@@ -135,6 +135,10 @@ namespace HW4_1
                     count++;
 
                 }
+                else
+                {
+
+                }
                 
             }
 
