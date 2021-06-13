@@ -43,11 +43,11 @@ namespace HW4_1
                             break;
                         case 1:
                             //Рандомное заполнение дохода
-                            massive[i, j] = /*2;*/r.Next(30);
+                            massive[i, j] = /*2;*/r.Next(2);
                             break;
                         case 2:
                             //Рандомное заполнение расхода
-                            massive[i, j] = /*2;*/r.Next(40);
+                            massive[i, j] = /*2;*/r.Next(2);
                             break;
                         case 3:
                             //Расчет прибыли
