@@ -43,11 +43,11 @@ namespace HW4_1
                             break;
                         case 1:
                             //Рандомное заполнение дохода
-                            massive[i, j] = /*1;*/r.Next(4);
+                            massive[i, j] = /*2;*/r.Next(30);
                             break;
                         case 2:
                             //Рандомное заполнение расхода
-                            massive[i, j] = /*2;*/r.Next(4);
+                            massive[i, j] = /*2;*/r.Next(40);
                             break;
                         case 3:
                             //Расчет прибыли
@@ -125,7 +125,7 @@ namespace HW4_1
             Array.Sort(tempArray);
 
             int[] worstProfits = new int[3];
-
+            bool matrixSameVal = false;
             for (int i = 1, count = 0; i < 12; i++)
             {
                 if (count >= worstProfits.Length) break;
@@ -133,31 +133,34 @@ namespace HW4_1
                 {
                     worstProfits[count] = tempArray[i-1];
                     count++;
-
+                    matrixSameVal = false;
                 }
                 else
                 {
-
+                    matrixSameVal = true;
                 }
-                
             }
+
+            Console.WriteLine($"\nТри худщие прибыли это: {worstProfits[0]}\t{worstProfits[1]}\t{worstProfits[2]}\t\n");
 
             int[,] reportMassive = new int[12,2];
 
-            for (int i = 0, count =0; i < 3; i++)
+            
+
+            for (int i = 0, count =0; i < 12; i++)
             {
-                for (int j = 0; j < 12; j++)
+                for (int j = 0; j < (matrixSameVal ? 1 : 3); j++)
                 {
-                    if (massive[j, 3] == worstProfits[i])
+                    if (massive[i, 3] == worstProfits[j])
                     {
-                        reportMassive[count, 0] = massive[j, 0];
-                        reportMassive[count,1] = massive[j, 3];
+                        reportMassive[count, 0] = massive[i, 0];
+                        reportMassive[count,1] = massive[i, 3];
                         count++;
                     }
                     
                 }
             }
-            Console.WriteLine("Наименьшая прибыль (Наибольший убыток) по возрастанию по месяцам\n");
+            Console.WriteLine("Наименьшая прибыль (Наибольший убыток) по месяцам\n");
             
             for (var i = 0; i < 12; i++)
             {
