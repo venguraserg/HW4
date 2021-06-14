@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
+
 
 namespace HW4_1
 {
@@ -43,11 +39,11 @@ namespace HW4_1
                             break;
                         case 1:
                             //Рандомное заполнение дохода
-                            massive[i, j] = /*2;*/r.Next(2);
+                            massive[i, j] = /*2;*/r.Next(20);
                             break;
                         case 2:
                             //Рандомное заполнение расхода
-                            massive[i, j] = /*2;*/r.Next(2);
+                            massive[i, j] = /*2;*/r.Next(20);
                             break;
                         case 3:
                             //Расчет прибыли
@@ -94,12 +90,13 @@ namespace HW4_1
 
             int[] worstProfits = new int[3];
             bool matrixSameVal = false;
-            for (int i = 1, count = 0; i < 12; i++)
+            worstProfits[0] = tempArray[0];
+            for (int i = 1, count = 1; i < 12; i++)
             {
                 if (count >= worstProfits.Length) break;
                 if (tempArray[i] != tempArray[i - 1])
                 {
-                    worstProfits[count] = tempArray[i-1];
+                    worstProfits[count] = tempArray[i];
                     count++;
                     matrixSameVal = false;
                 }
@@ -132,7 +129,14 @@ namespace HW4_1
             
             for (var i = 0; i < 12; i++)
             {
-                if(reportMassive[i,0]!=0)Console.WriteLine($" {(Months)reportMassive[i, 0],-10}{reportMassive[i, 1],5}");
+
+                if (reportMassive[i, 0] != 0)
+
+                {
+                    Console.Write(i + 1);
+                    Console.WriteLine($" {(Months)reportMassive[i, 0],-10}{reportMassive[i, 1],5}"); 
+                    
+                }
             }
            
 
